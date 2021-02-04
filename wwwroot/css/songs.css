@@ -1,0 +1,65 @@
+﻿.SongItem {
+    color: black !important;
+}
+
+.SongItemPlay:hover {
+    cursor: pointer !important;
+    background-color: mediumseagreen !important;
+}
+
+#player {
+    position: fixed;
+    bottom: 0;
+
+    height: 17%;
+    width: 100%;
+    display: flex;
+}
+
+#right_player {
+    width: 88%;
+    text-align: center;
+}
+
+#title_player {
+    font-size: 20px;
+}
+
+#music_player_box {
+    width: 12%;
+    text-align: center;
+}
+
+#button_add_song {
+    float: right;
+    margin-bottom: 4px;
+}
+
+#play_button {
+    font-size: 5.5rem;
+    margin-top: 15px;
+}
+
+#mute_button {
+    font-size: 2.5rem;
+}
+
+#div_bottom_buttons {
+    margin-top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.music_buttons:hover {
+    cursor: pointer;
+}
+
+.music_buttons {
+    -moz-user-select: none; /* Firefox */
+    -webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
+    -ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
+    user-select: none; /* Propriété standard */
+}

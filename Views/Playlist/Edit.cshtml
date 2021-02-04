@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Your Playlists";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Playlist</h1>
+
+@foreach (Player.Models.SongPlaylist song in ViewData["songs"] as List<SongPlaylist>)
+{
+    <p>@song.Song.Title</p>
+}

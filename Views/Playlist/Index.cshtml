@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Your Playlists";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Playlists</h1>
+
+<a class="nav-link" asp-area="" asp-controller="Playlist" asp-action="Create">Add Playlist</a>
+
+@foreach (Player.Models.Playlist playlist in ViewData["playlists"] as List<Playlist>)
+{
+<a asp-controller="Playlist" asp-action="Edit" asp-route-id="@playlist.PlaylistId">@playlist.Name</a>
+
+}

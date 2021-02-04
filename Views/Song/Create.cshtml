@@ -1,0 +1,45 @@
+﻿@model Player.Models.Song;
+@{
+    ViewData["Title"] = "AddSong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="card">
+    <div class="card-header">
+        <h1>AddSong</h1>
+    </div>
+    <div class="card-body text-center">
+        <form method="post" runat="server" enctype="multipart/form-data">
+            <div class="form-group">
+                <input class="form-control" type="text" asp-for="Title" placeholder="title" required />
+            </div>
+
+            <div class="form-group">
+                <input class="form-control" type="text" asp-for="Artist" placeholder="artist" required />
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" type="text" asp-for="Genre" id="genre_form" required>
+                    <option>Rap</option>
+                    <option>Rock</option>
+                    <option>Electro</option>
+                    <option>Country</option>
+                    <option>Disco</option>
+                    <option>Jazz</option>
+                    <option>Techno</option>
+                    <option>Classique</option>
+                    <option>Autre</option>
+                </select>
+                
+            </div>
+
+            <div class="form-group">
+                <input class="form-control-file" type="file" name="fileSong" required />
+            </div>
+
+            <input type="submit" />
+        </form>
+    </div>
+</div>
+

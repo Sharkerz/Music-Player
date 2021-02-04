@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Songs</h1>
+
+    <table id="songTable" class="display">
+        <a type="button" class="btn btn-primary" id="button_add_song" asp-controller="Song" asp-action="Create">Add Song</a>
+        <thead>
+            <tr>
+                <th>Lire</th>
+                <th>Titre</th>
+                <th>Artiste</th>
+                <th>Genre</th>
+                <th>playlist</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Player.Models.Song song in ViewData["songs"] as List<Song>)
+            {
+            <tr>
+                <td class="SongItemPlay" data-path="@song.PathFileSong" data-title="@song.Title" data-artist="@song.Artist"><i class="material-icons">play_arrow</i></td>
+                <td class="SongItem">@song.Title</td>
+                <td class="SongItem">@song.Artist</td>
+                <td class="SongItem">@song.Genre</td>
+                <td>
+                    <form method="post">
+                        <input name="songId" type="hidden" value="@song.SongId"/>
+                        <select class="form-control" name="selected_playlist">
+                            @foreach (Player.Models.Playlist playlist in ViewData["playlists"] as List<Playlist>)
+                            {
+                                <option value="@playlist.PlaylistId">@playlist.Name</option>
+                            }
+                            <input asp-controller="Home" asp-action="AddSongPlaylist" type="submit"/>
+                        </select>
+                    </form>
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#songTable').DataTable();
+        });
+    </script>
+</div>

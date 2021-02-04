@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Player</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/layout.css" />
+    <link rel="stylesheet" href="~/css/songs.css" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Player</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Playlist" asp-action="Index">Playlists</a>
+                        </li>
+                    </ul>
+                </div>
+                <partial name="_LoginPartial.cshtml" />
+                <i class="material-icons" id="btn_theme">
+                    brightness_3
+                </i>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <div id="player" hidden>
+        <div id="music_player_box">
+            <i class="material-icons music_buttons" id="play_button">pause</i>
+            <br />
+            <div id="div_bottom_buttons">
+                <i class="material-icons music_buttons" id="less_volume">volume_down</i>
+                <i class="material-icons music_buttons" id="mute_button">volume_off</i>
+                <i class="material-icons music_buttons" id="more_volume">volume_up</i>
+            </div>
+        </div>
+        <div id="right_player">
+            <div id="music_player"></div>
+            <p id="title_player"></p>
+        </div>
+    </div>
+
+    @*<footer class="footer text-muted">
+            <div class="container">
+                &copy; 2021 - Player - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>*@
+
+    <script src="https://cdn.jsdelivr.net/gh/fcmam5/nightly.js@v1.0/dist/nightly.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <!-- music player -->
+    <script src="~/js/music.js"></script>
+
+
+
+
+</body>
+</html>

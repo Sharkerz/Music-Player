@@ -1,0 +1,20 @@
+﻿@model Player.Models.Playlist;
+@{
+    ViewData["Title"] = "Add Playlist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h1>AddSong</h1>
+    </div>
+    <div class="card-body text-center">
+        <form method="post">
+            <div class="form-group">
+                <input class="form-control" type="text" asp-for="Name" placeholder="Playlist name" required />
+            </div>
+
+            <input type="submit" value="Create Playlist" />
+        </form>
+    </div>
+</div>
