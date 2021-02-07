@@ -7,10 +7,14 @@
     background-color: mediumseagreen !important;
 }
 
+.SongItemRemove:hover {
+    cursor: pointer !important;
+    background-color: darkred !important;
+}
+
 #player {
     position: fixed;
-    bottom: 0;
-
+    bottom: 20px;
     height: 17%;
     width: 100%;
     display: flex;
@@ -62,4 +66,30 @@
     -webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
     -ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
     user-select: none; /* Propriété standard */
+}
+
+.btnSongIcons {
+    font-size: 2rem !important;
+}
+
+.btnSongIcons:hover {
+    cursor: pointer
+}
+
+.btnSongDelete:hover {
+    color: red;
+}
+
+.btnAdd:hover {
+    color: royalblue;
+}
+
+.btnDetail:hover {
+    color: forestgreen;
+}
+
+.btnSongIcons:focus {
+    outline: none !important;
+    border-style: none !important;
+    border: none !important;
 }

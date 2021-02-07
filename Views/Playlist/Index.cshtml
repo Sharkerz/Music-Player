@@ -3,12 +3,42 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link rel="stylesheet" href="~/css/playlist.css" />
+
 <h1>Playlists</h1>
 
-<a class="nav-link" asp-area="" asp-controller="Playlist" asp-action="Create">Add Playlist</a>
+<div style="text-align: center">
+    <table id="songTable" class="display">
+        <a type="button" class="btn btn-primary" id="button_add_song" asp-controller="Playlist" asp-action="Create">Add Playlist</a>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Player.Models.Playlist playlist in ViewData["playlists"] as List<Playlist>)
+            {
+            <tr>
+                <td class="link_playlist"> <a asp-controller="Playlist" asp-action="Detail" asp-route-id="@playlist.PlaylistId" asp-controller="Playlist"></a>  @playlist.Name</td>
+                <td class="PlaylistRemove">
+                    <i class="material-icons">close</i>
+                    <form method="post" action=@Url.Action("Remove", "Playlist")>
+                        <input name="playlistId" value="@playlist.PlaylistId" type="hidden" />
+                    </form>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-@foreach (Player.Models.Playlist playlist in ViewData["playlists"] as List<Playlist>)
-{
-<a asp-controller="Playlist" asp-action="Edit" asp-route-id="@playlist.PlaylistId">@playlist.Name</a>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+<script src="~/js/playlistList.js" asp-append-version="true"></script>
 
-}
+<script>
+        $(document).ready(function () {
+            $('#songTable').DataTable(
+            );
+        });
+</script>

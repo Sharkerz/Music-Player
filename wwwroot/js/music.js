@@ -18,6 +18,8 @@
 
 
         $("#player").removeAttr('hidden');
+        $("#playerNoHide").removeAttr('hidden');
+
         $('#play_button').text('pause');
         wavesurfer.play();
 
@@ -26,7 +28,8 @@
 
 
         $("#title_player").text(title + " - " + artist)
-        wavesurfer.load('songs/' + path);
+        var origin = window.location.origin;
+        wavesurfer.load(origin + "/songs/" + path);
     });
 
     // Button Play / Pause
@@ -66,7 +69,19 @@
         wavesurfer.setVolume(volume);
     })
 
+    //Remove Song from playlist
+    $('.SongItemRemove').click(function () {
+        $(this)[0].children[1].submit();
+    })
 
 
+    // == Song list ==
+    // Delete
+    $('#songTable tbody').on('click', '.btnSongDelete', function () {
+            $(this).parent()[0].submit();
+        })
 
+    $('#songTable tbody').on('click', '.btnSong', function () {
+        $(this).prev()[0].click()
+    })
 });

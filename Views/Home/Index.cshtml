@@ -13,30 +13,31 @@
                 <th>Titre</th>
                 <th>Artiste</th>
                 <th>Genre</th>
-                <th>playlist</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (Player.Models.Song song in ViewData["songs"] as List<Song>)
             {
-            <tr>
-                <td class="SongItemPlay" data-path="@song.PathFileSong" data-title="@song.Title" data-artist="@song.Artist"><i class="material-icons">play_arrow</i></td>
-                <td class="SongItem">@song.Title</td>
-                <td class="SongItem">@song.Artist</td>
-                <td class="SongItem">@song.Genre</td>
-                <td>
-                    <form method="post">
-                        <input name="songId" type="hidden" value="@song.SongId"/>
-                        <select class="form-control" name="selected_playlist">
-                            @foreach (Player.Models.Playlist playlist in ViewData["playlists"] as List<Playlist>)
-                            {
-                                <option value="@playlist.PlaylistId">@playlist.Name</option>
-                            }
-                            <input asp-controller="Home" asp-action="AddSongPlaylist" type="submit"/>
-                        </select>
-                    </form>
-                </td>
-            </tr>
+                <tr>
+                    <td class="SongItemPlay" data-path="@song.PathFileSong" data-title="@song.Title" data-artist="@song.Artist"><i class="material-icons">play_arrow</i></td>
+                    <td class="SongItem">@song.Title</td>
+                    <td class="SongItem">@song.Artist</td>
+                    <td class="SongItem">@song.Genre</td>
+                    <td class="d-flex float-right">
+                        <!-- Go to detail -->
+                        <a hidden type="button" class="goDetail" asp-controller="Song" asp-action="Detail" asp-route-id="@song.SongId">Detail</a>
+                        <i class="material-icons btnSongIcons btnSong btnDetail">info</i>
+                        <!-- Add in a playlist-->
+                        <a hidden type="button" class="goAddPlaylist" asp-controller="Song" asp-action="AddInPlaylist" asp-route-id="@song.SongId">Add Song</a>
+                        <i class="material-icons btnSongIcons btnSong btnAdd">add</i>
+                        <!-- Delete song -->
+                        <form method="post" action="@Url.Action("Delete", "Song")">
+                            <input type="hidden" name="songId" value="@song.SongId" />
+                            <i class="material-icons btnSongIcons btnSongDelete">clear</i>
+                        </form>
+                    </td>
+                </tr>
             }
 
         </tbody>
@@ -47,7 +48,8 @@
 
     <script>
         $(document).ready(function () {
-            $('#songTable').DataTable();
+            $('#songTable').DataTable(
+            );
         });
     </script>
 </div>

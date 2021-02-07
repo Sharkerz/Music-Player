@@ -183,7 +183,9 @@ D:\Dev\C#\Player\Player\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.
 D:\Dev\C#\Player\Player\obj\Debug\net5.0\Player.Views.pdb
 D:\Dev\C#\Player\Player\obj\Debug\net5.0\Player.csproj.CopyComplete
 D:\Dev\C#\Player\Player\obj\Debug\net5.0\Player.genruntimeconfig.cache
-D:\Dev\C#\Player\Player\obj\Debug\net5.0\Player.csprojAssemblyReference.cache
 D:\Dev\C#\Player\Player\obj\Debug\net5.0\Razor\Views\Playlist\Create.cshtml.g.cs
 D:\Dev\C#\Player\Player\obj\Debug\net5.0\Razor\Views\Playlist\Index.cshtml.g.cs
 D:\Dev\C#\Player\Player\obj\Debug\net5.0\Razor\Views\Playlist\Edit.cshtml.g.cs
+D:\Dev\C#\Player\Player\obj\Debug\net5.0\Razor\Views\Song\AddInPlaylist.cshtml.g.cs
+D:\Dev\C#\Player\Player\obj\Debug\net5.0\Razor\Views\Song\Detail.cshtml.g.cs
+D:\Dev\C#\Player\Player\obj\Debug\net5.0\Razor\Views\Playlist\Detail.cshtml.g.cs

@@ -1,11 +1,23 @@
-﻿@{
-    ViewData["Title"] = "Your Playlists";
+﻿@model Player.Models.Playlist;
+@{
+    ViewData["Title"] = "Rename Playlist";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Playlist</h1>
+<div class="card">
+    <div class="card-header">
+        <h1>Rename the Playlist</h1>
+    </div>
+    <div class="card-body text-center">
+        <form method="post">
 
-@foreach (Player.Models.SongPlaylist song in ViewData["songs"] as List<SongPlaylist>)
-{
-    <p>@song.Song.Title</p>
-}
+            <div class="form-group">
+                <input type="hidden" value="@ViewData["playlistId"]" asp-for="PlaylistId"/>
+                <input class="form-control" value="@ViewData["playlistName"]" name="playlistName" type="text" asp-for="Name" required />
+            </div>
+
+            <input type="submit" />
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Your Playlist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Playlist - @ViewData["playlistName"]</h1>
+
+<div style="text-align: center">
+    <table id="songTable" class="display">
+        <a type="button" class="btn btn-primary" id="button_add_song" asp-controller="Playlist" asp-action="Edit" asp-route-id="@ViewData["playlistId"]">Rename the playlist</a>
+        <thead>
+            <tr>
+                <th>Play</th>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Genre</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Player.Models.SongPlaylist song in ViewData["songs"] as List<SongPlaylist>)
+            {
+                <tr>
+                    <td class="SongItemPlay" data-path="@song.Song.PathFileSong" data-title="@song.Song.Title" data-artist="@song.Song.Artist"><i class="material-icons">play_arrow</i></td>
+                    <td class="SongItem">@song.Song.Title</td>
+                    <td class="SongItem">@song.Song.Artist</td>
+                    <td class="SongItem">@song.Song.Genre</td>
+                    <td class="SongItemRemove">
+                        <i class="material-icons">close</i>
+                        <form method="post" action=@Url.Action("RemoveSong", "Playlist")>
+                            <input name="songId" value="@song.SongId" type="hidden" />
+                            <input name="playlistId" value="@song.PlaylistId" type="hidden" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+
+<script>
+        $(document).ready(function () {
+            $('#songTable').DataTable({
+                "paging": false,
+                "sorting": false,
+                "info": false,
+            });
+        });
+</script>

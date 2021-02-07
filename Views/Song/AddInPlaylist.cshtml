@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "AddSong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="card">
+    <div class="card-header">
+        <h1>Add the song @ViewData["songName"] to playlist</h1>
+    </div>
+    <div class="card-body text-center">
+        <form method="post">
+            <input name="songId" type="hidden" value="@ViewData["songId"]" />
+            <select class="form-control form-select selectAddToPlaylist" name="selected_playlist">
+                @foreach (Player.Models.Playlist playlist in ViewData["playlists"] as List<Playlist>)
+                {
+                    <option value="@playlist.PlaylistId">@playlist.Name</option>
+                }
+            </select>
+            <br />
+            <input class="btn btn-primary" type="submit" value="Add to playlist" />
+        </form>
+    </div>
+</div>
+

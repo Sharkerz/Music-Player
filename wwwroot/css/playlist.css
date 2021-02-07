@@ -1,0 +1,9 @@
+﻿.link_playlist:hover {
+    cursor: pointer;
+    background-color: #A1A1A1 !important;
+}
+
+.PlaylistRemove:hover {
+    cursor: pointer !important;
+    background-color: darkred !important;
+}

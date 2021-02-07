@@ -41,6 +41,41 @@ namespace Player.Controllers
             return View();
         }
 
+        public IActionResult Edit(int id)
+        {
+            var playlist = _context.Playlist.Find(id);
+
+            ViewData["playlistId"] = playlist.PlaylistId;
+            ViewData["playlistName"] = playlist.Name;
+            return View(playlist);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Playlist playlist)
+        {
+            try
+            {
+                ClaimsPrincipal currentUser = this.User;
+                var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var renamedPlaylist = _context.Playlist.Find(playlist.PlaylistId);
+                renamedPlaylist.Name = Request.Form["playlistName"];
+
+                if (renamedPlaylist.userID == currentUserID)
+                {
+                    _context.Entry(renamedPlaylist).State = EntityState.Modified;
+                    _context.SaveChanges();
+                }
+            } catch
+            {
+
+            }
+
+            Index();
+            return View("Index");
+        }
+
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -59,7 +94,7 @@ namespace Player.Controllers
         }
 
         [Authorize]
-        public ViewResult Edit(int id)
+        public ViewResult Detail(int id)
         {
             ClaimsPrincipal currentUser = this.User;
             var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -71,12 +106,10 @@ namespace Player.Controllers
                 if (playlist.userID == currentUserID)
                 {
                     List<SongPlaylist> songplaylist = (from x in _context.SongPlaylist where x.PlaylistId == id select x).Include(q => q.Song).ToList();
-                    //songplaylist.Select(o => new
-                    //{
-                    //    o.PlaylistId,
-                    //    Songs = o.SongPlaylist.Select(ot => ot.Song).ToList()
-                    //});
+
                     ViewData["songs"] = songplaylist;
+                    ViewData["playlistName"] = playlist.Name;
+                    ViewData["playlistId"] = playlist.PlaylistId;
                     return View(playlist);
                 }
                 else
@@ -90,6 +123,45 @@ namespace Player.Controllers
                 Index();
                 return View("Index");
             }
+        }
+
+
+        [HttpPost]
+        public IActionResult RemoveSong()
+        {
+            try
+            {
+                var playlistId = Int32.Parse(Request.Form["playlistId"]);
+                var songId = Int32.Parse(Request.Form["songId"]);
+                var song = _context.Set<SongPlaylist>().Where(x => x.PlaylistId == playlistId && x.SongId == songId).FirstOrDefault();
+
+                if (song != null)
+                {
+                    _context.Set<SongPlaylist>().Remove(song);
+                    _context.SaveChanges();
+                }
+                return RedirectToAction("Edit", new { id = playlistId });
+            } 
+            catch 
+            {
+                Index();
+                return View("Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Remove()
+        {
+            try
+            {
+                var playlistId = Int32.Parse(Request.Form["playlistId"]);
+                var playlist = _context.Playlist.Find(playlistId);
+                _context.Playlist.Remove(playlist);
+                _context.SaveChanges();
+            }catch { }
+
+            Index();
+            return View("Index");
         }
 
     }

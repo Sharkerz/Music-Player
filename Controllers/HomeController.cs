@@ -51,19 +51,24 @@ namespace Player.Controllers
         [HttpPost]
         public IActionResult AddSongPlaylist(SongPlaylist songPlaylist)
         {
-            //SongPlaylist songPlaylist = new SongPlaylist();
+            try
+            {
+                //SongPlaylist songPlaylist = new SongPlaylist();
 
-            var selected_playlist = Request.Form["selected_playlist"];
-            Playlist playlist = _context.Playlist.Find(Int32.Parse(selected_playlist));
+                var selected_playlist = Request.Form["selected_playlist"];
+                Playlist playlist = _context.Playlist.Find(Int32.Parse(selected_playlist));
 
-            var selected_song = Request.Form["songId"];
-            Song song = _context.Song.Find(Int32.Parse(selected_song));
+                var selected_song = Request.Form["songId"];
+                Song song = _context.Song.Find(Int32.Parse(selected_song));
 
-            songPlaylist.PlaylistId = playlist.PlaylistId;
-            songPlaylist.SongId = song.SongId;
+                songPlaylist.PlaylistId = playlist.PlaylistId;
+                songPlaylist.SongId = song.SongId;
 
-            _context.Add(songPlaylist);
-            _context.SaveChanges();
+                _context.Add(songPlaylist);
+                _context.SaveChanges();
+            } catch {
+
+            }
 
             Index();
             return View("Index");
