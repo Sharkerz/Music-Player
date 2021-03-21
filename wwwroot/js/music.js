@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
 
+    var currentSong;
+
     var wavesurfer = WaveSurfer.create({
         container: '#music_player'
     });
@@ -15,6 +17,7 @@
         var path = $(this).attr('data-path');
         var title = $(this).attr('data-title');
         var artist = $(this).attr('data-artist');
+        currentSong = $(this).parent();
 
 
         $("#player").removeAttr('hidden');
@@ -84,4 +87,15 @@
     $('#songTable tbody').on('click', '.btnSong', function () {
         $(this).prev()[0].click()
     })
+
+    //Previous / next
+    $('#skip_next').click(function () {
+        currentSong.next().closest("tr")[0].children[0].click();
+    })
+
+    $('#skip_previous').click(function () {
+        currentSong.prev().closest("tr")[0].children[0].click();
+    })
+
+
 });

@@ -7790,11 +7790,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Dev\\C#\\Player\\Player\\Player.csproj",
+      "projectUniqueName": "D:\\Dev\\C#\\PlayerRepare\\Player\\Player.csproj",
       "projectName": "Player",
-      "projectPath": "D:\\Dev\\C#\\Player\\Player\\Player.csproj",
+      "projectPath": "D:\\Dev\\C#\\PlayerRepare\\Player\\Player.csproj",
       "packagesPath": "C:\\Users\\maxen\\.nuget\\packages\\",
-      "outputPath": "D:\\Dev\\C#\\Player\\Player\\obj\\",
+      "outputPath": "D:\\Dev\\C#\\PlayerRepare\\Player\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maxen\\AppData\\Roaming\\NuGet\\NuGet.Config",
