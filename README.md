@@ -1,5 +1,5 @@
 # Player
-Player est une plateforme web de partage de musique.
+Player est une plateforme web de partage et d'écoute de musique (idem à spotify, deezer...).
 Chaque musique ajouté sur la plateforme par un utilisateur pourra être écouté par tous et utilisé dans des playlists.
 
 ## Executer le projet
